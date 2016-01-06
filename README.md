@@ -64,6 +64,7 @@ StrongLoop Process Manager
 run > npm install -g strong-pm or npm install --unsafe-perm -g strong-pm
 
 Note:
+About StrongLoop: https://strongloop.com/
 # disable ipsec4
 /usr/sbin/rmdev -l ipsec_v4
 
