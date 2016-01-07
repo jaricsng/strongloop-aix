@@ -106,12 +106,13 @@ expected result below:
  
 - about "libstdc++.so.6" for Node.js on AIX 7.1 find [info](https://www.ibm.com/developerworks/community/forums/html/topic?id=ebea5da8-5150-4225-b0f7-147a543ceac4)
 
+- Support Information for IBM SDK for Node.js™ that is not available in the user documentation can be found [here](http://www-01.ibm.com/support/docview.wss?uid=swg21968931).
+
+## Resources
 for any additional aix files missing in your environment you can download it from 
 * [oss4aix.org](http://www.oss4aix.org/download/RPMS/)
 * [perzl](http://www.perzl.org/aix/)
 
-
 # License
 
-This sample code is licensed under [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 AIX Toolbox for Linux Applications [license](http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html).
