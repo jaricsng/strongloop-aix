@@ -102,11 +102,14 @@ expected result below:
      ? What's the name of your application? (loopback) 
 
 ### Troubleshooting
-checkout 
-- https://www.ibm.com/developerworks/community/forums/html/topic?id=ebea5da8-5150-4225-b0f7-147a543ceac4
-- http://www.perzl.org/aix/index.php?n=Main.Povray
+#### Cannot load module libstdc++.a(libstdc++.so.6)
+ 
+- about "libstdc++.so.6" for Node.js on AIX 7.1 find [info](https://www.ibm.com/developerworks/community/forums/html/topic?id=ebea5da8-5150-4225-b0f7-147a543ceac4)
 
-for any additional aix files missing in your environment you can download it from perzl.org if needed.
+for any additional aix files missing in your environment you can download it from 
+* [oss4aix.org](http://www.oss4aix.org/download/RPMS/)
+* [perzl](http://www.perzl.org/aix/)
+
 
 # License
 
