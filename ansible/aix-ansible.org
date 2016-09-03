@@ -11,6 +11,13 @@ brew install ansible
 location of my hosts file:
 
 =/usr/local/etc/ansible/hosts=
+
+hosts file contents
+#+BEGIN_SRC 
+[PureApp-OS]
+192.168.43.239
+#+END_SRC
+
 ** Generate public/private key in Mac
 
 #+BEGIN_SRC sh
