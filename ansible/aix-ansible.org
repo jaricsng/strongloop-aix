@@ -1,0 +1,113 @@
+To explore the use of Ansible in AIX provisioned in PureApplication.
+
+* My environment
+** Install Ansible in Mac
+
+#+BEGIN_SRC sh
+brew install ansible
+#+END_SRC
+** Add remote servers to be managed to hosts file of ansible
+
+location of my hosts file:
+
+=/usr/local/etc/ansible/hosts=
+** Generate public/private key in Mac
+
+#+BEGIN_SRC sh
+ssh-keygen -t rsa
+#+END_SRC
+
+*Console trace*
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/jaricsng/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/jaricsng/.ssh/id_rsa.
+Your public key has been saved in /Users/jaricsng/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:rO2sZBrW2FJrY4VwIQLqmBZIsObY0FbhpO3m7wEqodI jaricsng@Jarics-MacBook-Pro.local
+The key's randomart image is:
++---[RSA 2048]----+
+|+o. =..          |
+|+o B . .         |
+|=o+ + .          |
+|*=.. o o         |
+|=+. + o S        |
+|oo + * =         |
+|+ E * % .        |
+|.. . X =         |
+|    ..+.o        |
++----[SHA256]-----+
+
+if you specify a different file name for your rsa public and private key file, these files will be generated in the current 
+folder.
+
+You can then add the private key using the =ssh-add= command and add the public key to remote server =~/.ssh/authorized_keys=
+
+#+BEGIN_SRC sh
+ssh-add ~/.ssh/jaricsng_rsa
+#+END_SRC
+
+Output trace
+#+BEGIN_SRC 
+Enter passphrase for /Users/jaricsng/.ssh/jaricsng_rsa: 
+Identity added: /Users/jaricsng/.ssh/jaricsng_rsa (/Users/jaricsng/.ssh/jaricsng_rsa)
+#+END_SRC
+
+** setup the public key in remote server
+*** Copy the public key to remote server
+
+
+To disable ipsec4 in AIX
+#+BEGIN_SRC sh
+/usr/sbin/rmdev -l ipsec_v4
+#+END_SRC
+
+#+BEGIN_SRC sh
+scp jaricsng_rsa.pub virtuser@192.168.43.239:/devops
+#+END_SRC
+*** add the public key into the 
+
+to allows remote server login with SSH, you need to add the SSH public key into the remote server ~/.ssh/authorized_keys
+
+
+#+BEGIN_SRC sh
+ssh virtuser@192.168.43.239
+cd /devops
+cat jaricsng_rsa.pub >> ~/.ssh/authorized_keys
+#+END_SRC
+
+With SSH public key setup in remote server, AIX, we can run ansible without ID and password.
+
+** Test it
+
+The following will ping all the servers defined in the hosts file.
+
+ #+BEGIN_SRC sh
+ ansible all -m ping -u virtuser
+
+Trace Output
+ #+END_SRC
+192.168.43.239 | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+To run =echo= command in AIX, do the following
+
+#+BEGIN_SRC sh
+ansible all -a "/bin/echo hello" -u virtuser
+#+END_SRC
+
+Trace output
+#+BEGIN_SRC 
+192.168.43.239 | SUCCESS | rc=0 >>
+hello
+#+END_SRC
+References
+
+1. [[http://docs.ansible.com/ansible/intro_getting_started.html#getting-started][Getting started with Ansible]]
+2. [[https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2][Information on SSH public/private keys]]
+3. [[https://www.linode.com/docs/security/use-public-key-authentication-with-ssh][Use Public Key Authentication with SSH]]
+4. [[https://kb.iu.edu/d/aews][How do I set up SSH public-key authentication to connect to a remote system?]]
+5. [[http://www.ceda.ac.uk/help/users-guide/ssh-keys/][Managing SSH Logins with Public Key Authentication]]
