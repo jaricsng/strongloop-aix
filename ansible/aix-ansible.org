@@ -25,6 +25,7 @@ ssh-keygen -t rsa
 #+END_SRC
 
 *Console trace*
+#+BEGIN_SRC 
 Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/jaricsng/.ssh/id_rsa): 
 Enter passphrase (empty for no passphrase): 
@@ -45,6 +46,7 @@ The key's randomart image is:
 |.. . X =         |
 |    ..+.o        |
 +----[SHA256]-----+
+#+END_SRC
 
 if you specify a different file name for your rsa public and private key file, these files will be generated in the current 
 folder.
@@ -90,15 +92,17 @@ With SSH public key setup in remote server, AIX, we can run ansible without ID a
 
 The following will ping all the servers defined in the hosts file.
 
- #+BEGIN_SRC sh
- ansible all -m ping -u virtuser
+#+BEGIN_SRC sh
+ansible all -m ping -u virtuser
+#+END_SRC
 
 Trace Output
- #+END_SRC
+#+BEGIN_SRC 
 192.168.43.239 | SUCCESS => {
     "changed": false, 
     "ping": "pong"
 }
+#+END_SRC
 
 To run =echo= command in AIX, do the following
 
