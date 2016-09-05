@@ -96,6 +96,20 @@ The following will ping all the servers defined in the hosts file.
 ansible all -m ping -u virtuser
 #+END_SRC
 
+#+RESULTS:
+| 192.168.43.239 |        |   | SUCCESS | => | { |
+| changed        | false, |   |         |    |   |
+| ping           | pong   |   |         |    |   |
+| }              |        |   |         |    |   |
+| 192.168.43.231 |        |   | SUCCESS | => | { |
+| changed        | false, |   |         |    |   |
+| ping           | pong   |   |         |    |   |
+| }              |        |   |         |    |   |
+| 192.168.43.252 |        |   | SUCCESS | => | { |
+| changed        | false, |   |         |    |   |
+| ping           | pong   |   |         |    |   |
+| }              |        |   |         |    |   |
+
 Trace Output
 #+BEGIN_SRC 
 192.168.43.239 | SUCCESS => {
@@ -109,6 +123,14 @@ To run =echo= command in AIX, do the following
 #+BEGIN_SRC sh
 ansible all -a "/bin/echo hello" -u virtuser
 #+END_SRC
+
+#+RESULTS:
+| 192.168.43.252 |   |   | SUCCESS |   |   | rc=0 | >> |
+|          hello |   |   |         |   |   |      |    |
+| 192.168.43.231 |   |   | SUCCESS |   |   | rc=0 | >> |
+|          hello |   |   |         |   |   |      |    |
+| 192.168.43.239 |   |   | SUCCESS |   |   | rc=0 | >> |
+|          hello |   |   |         |   |   |      |    |
 
 Trace output
 #+BEGIN_SRC 
